@@ -1,0 +1,29 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Gist Automation Suite" verbose="1">
+
+    <test name="Login Test">
+        <classes>
+            <class name="tests.LoginTest"/>
+        </classes>
+    </test>
+
+    <test name="Create Public Gist">
+        <classes>
+            <class name="tests.CreateGistTest"/>
+        </classes>
+    </test>
+
+    <test name="Edit Gist">
+        <classes>
+            <class name="tests.EditGistTest"/>
+        </classes>
+    </test>
+
+    <test name="Delete Gist">
+        <classes>
+            <class name="tests.DeleteGistTest"/>
+        </classes>
+    </test>
+
+</suite>

@@ -1,0 +1,58 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.12.0'
+}
+
+group = 'com.coba'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Selenium
+    implementation 'org.seleniumhq.selenium:selenium-java:4.10.0'
+
+    // TestNG
+    testImplementation 'org.testng:testng:7.10.2'
+
+    // WebDriverManager
+    implementation 'io.github.bonigarcia:webdrivermanager:5.9.2'
+
+    // Dotenv (.env)
+    implementation 'io.github.cdimascio:java-dotenv:5.2.2'
+
+    // Allure TestNG
+    testImplementation 'io.qameta.allure:allure-testng:2.29.1'
+}
+
+test {
+    useTestNG() {
+        suites 'src/test/resources/testing.xml'
+    }
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+
+    finalizedBy 'allureReport'
+}
+
+allure {
+    version.set("2.24.0")
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            testng {
+                adapterVersion.set("2.24.0")
+            }
+        }
+    }
+}
+
+tasks.allureReport {
+    doFirst {
+        delete 'build/reports/allure-report'
+    }
+}
